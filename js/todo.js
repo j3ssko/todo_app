@@ -132,6 +132,15 @@ var view = {
 	}
 };
 
+// input works when user hits enter
+var addInput = document.getElementById('addTodoText');
+addInput.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        handlers.addTodo();
+    }
+});
+
 view.setupEventListeners();
 
 
