@@ -113,7 +113,7 @@ var view = {
 	},
 	createDeleteButton: function() {
 		var deleteButton = document.createElement('button');
-		deleteButton.textContent = 'delete';
+		deleteButton.textContent = 'x';
 		deleteButton.className = 'deleteButton';
 		return deleteButton;
 	},
