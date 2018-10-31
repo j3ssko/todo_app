@@ -7,29 +7,32 @@
   </head>
   <body>
   	<div id="container">
-        <div class="input-container">
-
+        <div id="input-container">
+          <div id="add-todo-container">
             <input id="addTodoText" class="question" type="text" name="newitem" required autocomplete="off">
-            <label for="addTodoText"><span>What do you have to do?</span></label>
+            <label for="addTodoText"><span>What do you have to do today?</span></label>
 
-          <div class="btn-container">
-            <button onclick="handlers.addTodo()">add a task</button>
+            <div class="btn-container">
+              <button onclick="handlers.addTodo()">add task</button>
+            </div>
           </div>
         </div>
 
-        <h1>Tasks</h1>
-        <div>
-          <ul class="todolist"></ul>
-        </div>
+        <div id="list-container">
+          <div class="input-container">
+            <button class="secondary" onclick="handlers.toggleAll()">toggle all</button>
+          </div>
+          <h1>Here's what's getting done:</h1>
+          <div>
+            <ul class="todolist"></ul>
+          </div>
+          <h2>You've got this.</h2>
 
-        <div class="input-container">
-          <input id="changePositionInput" type="number">
-          <input id="changeTextInput" type="text">
-          <button onclick="handlers.changeTodos()">change</button>
-        </div>
-
-        <div class="input-container">
-          <button onclick="handlers.toggleAll()">toggle all</button>
+          <div class="input-container-change">
+            <input id="changePositionInput" type="number">
+            <input id="changeTextInput" type="text">
+            <button onclick="handlers.changeTodos()">change</button>
+          </div>
         </div>
   	</div>
     <script type="text/javascript" src="js/todo.js"></script>

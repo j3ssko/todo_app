@@ -21,7 +21,7 @@ var todoList = {
 	deleteTodo: function(position) {
 		this.todos.splice(position, 1);
 	},
-	// mark a single item complere by chaning its boolean value - also found by array position
+	// mark a single item complere by changing its boolean value - also found by array position
 	toggleCompleted: function(position) {
 		var todo = this.todos[position];
 		todo.isCompleted = !todo.isCompleted;
@@ -106,15 +106,16 @@ var view = {
 			};
 
 			todoLi.id = position;
+			todoLi.contentEditable='true';
 			todoLi.textContent = todoTextWithCompletion;
-			todoLi.prepend(this.createisCompletedButton());
 			todoLi.appendChild(this.createDeleteButton());
+			todoLi.appendChild(this.createisCompletedButton());
 			todosUl.appendChild(todoLi);
 		}, this);
 	},
 	createDeleteButton: function() {
 		var deleteButton = document.createElement('button');
-		deleteButton.textContent = 'x';
+		deleteButton.innerHTML = 'delete';
 		deleteButton.className = 'deleteButton';
 		return deleteButton;
 	},
@@ -153,7 +154,3 @@ addInput.addEventListener("keyup", function(event) {
 });
 
 view.setupEventListeners();
-
-
-
-
