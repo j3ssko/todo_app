@@ -76,10 +76,8 @@ var handlers = {
 		view.displayTodos();
 
 	},
-	toggleCompleted: function() {
-		var toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
-		todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
-		toggleCompletedPositionInput.value = '';
+	toggleCompleted: function(position) {
+		todoList.toggleCompleted(position);
 		view.displayTodos();
 	}
 };
@@ -100,14 +98,17 @@ var view = {
 			var todoTextWithCompletion = '';
 
 			if (todo.isCompleted === true) {
-				todoTextWithCompletion = '(x) ' + todo.todoText;
+				todoLi.style.color = '#ccc';
+				todoLi.style.textDecoration = 'line-through';
+				todoTextWithCompletion = todo.todoText;
 			} else {
-				todoTextWithCompletion = '( ) ' + todo.todoText;
+				todoTextWithCompletion = todo.todoText;
 			};
 
 			todoLi.id = position;
 			todoLi.textContent = todoTextWithCompletion;
-			todoLi.appendChild(this.createDeleteButton())
+			todoLi.prepend(this.createisCompletedButton());
+			todoLi.appendChild(this.createDeleteButton());
 			todosUl.appendChild(todoLi);
 		}, this);
 	},
@@ -116,6 +117,12 @@ var view = {
 		deleteButton.textContent = 'x';
 		deleteButton.className = 'deleteButton';
 		return deleteButton;
+	},
+	createisCompletedButton: function() {
+		var isCompletedButton = document.createElement('button');
+		isCompletedButton.textContent = 'done?';
+		isCompletedButton.className = 'isCompletedButton';
+		return isCompletedButton
 	},
 	setupEventListeners: function() {
 		var todosUl = document.querySelector('ul');
@@ -127,6 +134,10 @@ var view = {
 
 		if (elementClicked.className === 'deleteButton') {
 			handlers.deleteTodo(elementClicked.parentNode.id);
+		}
+
+		if (elementClicked.className === 'isCompletedButton') {
+			handlers.toggleCompleted(elementClicked.parentNode.id);
 		}
 		});
 	}
